@@ -1,5 +1,5 @@
 {
-  "image_name": "cyberdojofoundation/gpp_igloo:adc6d35",
+  "image_name": "cyberdojofoundation/gpp_igloo:bada23b",
   "display_name": "C++ (g++), Igloo",
   "visible_filenames": [
     "hiker.tests.cpp",
