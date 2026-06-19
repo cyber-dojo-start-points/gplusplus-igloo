@@ -1,6 +1,14 @@
 {
   "image_name": "ghcr.io/cyber-dojo-languages/gpp_igloo:6e27f63",
   "display_name": "C++ (g++ 15.2.0), Igloo 1.1.1",
+  "language": [
+    "C++ (g++)",
+    "15.2.0"
+  ],
+  "test_framework": [
+    "Igloo",
+    "1.1.1"
+  ],
   "visible_filenames": [
     "hiker.tests.cpp",
     "hiker.cpp",
