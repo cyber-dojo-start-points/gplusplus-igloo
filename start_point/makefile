@@ -11,7 +11,8 @@ CXXFLAGS += -Wall -Wextra -pthread
 # here is waiting on how fast the code runs, and optimising it costs more time
 # in the compiler than it ever gives back.
 CXXFLAGS += -O0
-CXXFLAGS += -fprofile-arcs -ftest-coverage
+COVERAGE_FLAGS += -fprofile-arcs -ftest-coverage
+CXXFLAGS += $(COVERAGE_FLAGS)
 
 HPP_FILES = $(wildcard *.hpp)
 COMPILED_HPP_FILES = $(patsubst %.hpp,%.compiled_hpp,$(HPP_FILES))
@@ -33,5 +34,9 @@ test: $(OBJ_FILES) $(COMPILED_HPP_FILES)
 # are #included from other files and thus have a large span
 # of influence (unlike .cpp files which are not #included)
 
+# Coverage files are named after the output file's basename, so hiker.hpp
+# compiled here and hiker.cpp compiled above both claim hiker.gcno. The
+# header holds no code to measure, so leaving coverage out of this compile
+# is what keeps the real coverage data intact.
 %.compiled_hpp: %.hpp
-	@$(CXX) -x c++ $(CXXFLAGS) -c -o $@ $<
+	@$(CXX) -x c++ $(filter-out $(COVERAGE_FLAGS),$(CXXFLAGS)) -c -o $@ $<
